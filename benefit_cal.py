@@ -190,8 +190,8 @@ def df_filter_data(df_total,df_filter,main_field,sub_field,midnight_session = Fa
     
     return df_res
 
-# df_total2 = df_filter_data(df_total2,df_one_session_film,"影院","影片")
-# print(len(df_total2))
+df_total2 = df_filter_data(df_total2,df_one_session_film,"影院","影片")
+print(len(df_total2))
 # df_total2 = df_filter_data(df_total2,df_jiaying_hall,"影院","影厅")
 # print(len(df_total2))
 # df_total2 = df_filter_data(df_total2,df_film,"影片","场次时间",midnight_session = True)
