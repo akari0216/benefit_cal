@@ -109,16 +109,16 @@ df_total["上座率2"] = np.round(np.divide(df_total["人数"].astype(int),df_to
 print(len(df_total))
 df_total_part1 = df_total[df_total["上座率2"] < 0.7]
 df_total_part2 = df_total[df_total["上座率2"] >= 0.7]
-#用各自列的tolist方法换为列表，然后就可以取值了，否则df的loc方法返回的object对象无法转为str
-t = 0
-for i in df_total_part2.index:
-    for j in df_table_cold_film.index:
-        if df_total_part2.loc[i:i,"影院"].tolist()[0] == df_table_cold_film.loc[j:j,"影院"].tolist()[0] and df_total_part2.loc[i:i,"影片"].tolist()[0] == df_table_cold_film.loc[j:j,"影片"].tolist()[0]:
-            df_total_part2.drop(index = i,axis = 0,inplace = True)
-            t += 1
-            print("已剔除:%s" % t)
-            #在源数据剔除了所以跳到下一个循环
-            break
+# #用各自列的tolist方法换为列表，然后就可以取值了，否则df的loc方法返回的object对象无法转为str
+# t = 0
+# for i in df_total_part2.index:
+#     for j in df_table_cold_film.index:
+#         if df_total_part2.loc[i:i,"影院"].tolist()[0] == df_table_cold_film.loc[j:j,"影院"].tolist()[0] and df_total_part2.loc[i:i,"影片"].tolist()[0] == df_table_cold_film.loc[j:j,"影片"].tolist()[0]:
+#             df_total_part2.drop(index = i,axis = 0,inplace = True)
+#             t += 1
+#             print("已剔除:%s" % t)
+#             #在源数据剔除了所以跳到下一个循环
+#             break
 #得出剔除包场数据后合并
 df_total2 = pd.concat([df_total_part1,df_total_part2],ignore_index = True)
 df_total2.sort_values(by = "影院",ascending = True,inplace = True)
@@ -189,12 +189,12 @@ def df_filter_data(df_total,df_filter,main_field,sub_field,midnight_session = Fa
     
     return df_res
 
-df_total2 = df_filter_data(df_total2,df_one_session_film,"影院","影片")
-print(len(df_total2))
-df_total2 = df_filter_data(df_total2,df_jiaying_hall,"影院","影厅")
-print(len(df_total2))
-df_total2 = df_filter_data(df_total2,df_film,"影片","场次时间",midnight_session = True)
-print(len(df_total2))
+# df_total2 = df_filter_data(df_total2,df_one_session_film,"影院","影片")
+# print(len(df_total2))
+# df_total2 = df_filter_data(df_total2,df_jiaying_hall,"影院","影厅")
+# print(len(df_total2))
+# df_total2 = df_filter_data(df_total2,df_film,"影片","场次时间",midnight_session = True)
+# print(len(df_total2))
 
 table2 = pd.pivot_table(df_total2, index = ["影院","影片"],values = ["票房","人数","总座位数","场次时间"],aggfunc = {"票房":np.sum,"人数":np.sum,"总座位数":np.sum,"场次时间":len},fill_value = 0,margins = False)
 df_table2 = pd.DataFrame(table2)
