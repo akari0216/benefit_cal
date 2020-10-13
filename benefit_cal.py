@@ -119,6 +119,7 @@ df_total_part2 = df_total[df_total["上座率2"] >= 0.7]
 #             print("已剔除:%s" % t)
 #             #在源数据剔除了所以跳到下一个循环
 #             break
+
 #得出剔除包场数据后合并
 df_total2 = pd.concat([df_total_part1,df_total_part2],ignore_index = True)
 df_total2.sort_values(by = "影院",ascending = True,inplace = True)
